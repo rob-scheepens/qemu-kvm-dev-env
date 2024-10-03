@@ -40,4 +40,4 @@ set -x
 	-append "console=hvc0 kvm_intel.dump_invalid_vmcs=1 nokaslr vfio_iommu_type1.allow_unsafe_interrupts=1 $1 $2" \
 	-virtfs local,path=$SHARE_DIR,mount_tag=host,security_model=none \
 	-append console=ttyS0,38400 -serial file:serial_linux.out \
-    -D /var/log/qemu.log -d cpu_reset,guest_errors \
+    -D /root/qemu.log \

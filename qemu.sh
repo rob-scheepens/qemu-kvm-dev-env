@@ -19,7 +19,7 @@ fi
 set -x
 
 /usr/bin/qemu-system-x86_64 \
-	-smp 90 \
+	-smp 80 \
 	-kernel $KERNEL \
 	-initrd $INITRD_PATH \
 	-cpu host,vmx=on \

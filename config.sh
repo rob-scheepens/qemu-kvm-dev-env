@@ -20,5 +20,5 @@ export HOST_TELNET_PORT="1237"
 export GUEST_CONSOLE_PORT="1235"
 export GDB_PORT="1234"
 
-export CPUS="8"
+export CPUS="4"
 export MEM="32G"

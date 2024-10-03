@@ -53,6 +53,7 @@ else
 	CMD="$CMD -monitor stdio"
 	CMD="$CMD -serial tcp:10.57.76.100:$GUEST_CONSOLE_PORT,server,nowait"
 	CMD="$CMD -action panic=none"
+	CMD="$CMD -append console=ttyS0,38400 -serial file:serial_windows.out"
 fi
 
 echo Running: $CMD

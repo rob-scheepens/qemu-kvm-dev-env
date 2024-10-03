@@ -46,12 +46,11 @@ else
 	CMD="$CMD -drive file=/dev/nvme0n1,if=none,id=d,cache=none,format=raw"
 	CMD="$CMD -device nvme,drive=d,serial=1234,bootindex=1"
 	CMD="$CMD -device qemu-xhci -device usb-tablet"
-	CMD="$CMD -netdev user,id=nd,hostfwd=tcp:10.57.76.100:3389-:3389,hostfwd=tcp:10.57.76.100:$SSH_PORT-:22"
+	CMD="$CMD -netdev user,id=nd,hostfwd=tcp::3389-:3389,hostfwd=tcp::$SSH_PORT-:22"
 	CMD="$CMD -device e1000,netdev=nd"
 	CMD="$CMD -drive if=pflash,format=raw,unit=0,readonly=on,file=/OVMF_CODE.2018.fd"
 	CMD="$CMD -drive if=pflash,format=raw,unit=1,file=/OVMF_VARS.$VARS.fd"
 	CMD="$CMD -monitor stdio"
-	CMD="$CMD -serial tcp:10.57.76.100:$GUEST_CONSOLE_PORT,server,nowait"
 	CMD="$CMD -action panic=none"
 	CMD="$CMD -append console=ttyS0,38400 -serial file:serial_windows.out"
 fi

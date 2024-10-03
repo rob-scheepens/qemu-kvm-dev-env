@@ -33,10 +33,10 @@ set -x
 	-device e1000,netdev=n0 \
 	-display none \
 	-device virtio-serial-pci \
-	-chardev stdio,id=c,signal=off,mux=on \
+	-chardev stdio,id=c,signal=off,mux=on,logfile=serial_linux.log \
+	-serial chardev:c \
 	-mon chardev=c,mode=readline \
 	-device virtconsole,chardev=c \
 	-device qemu-xhci \
 	-append "console=hvc0 kvm_intel.dump_invalid_vmcs=1 nokaslr vfio_iommu_type1.allow_unsafe_interrupts=1 $1 $2" \
 	-virtfs local,path=$SHARE_DIR,mount_tag=host,security_model=none \
-	-append console=ttyS0,38400 -serial file:serial_linux.out \

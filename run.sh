@@ -50,7 +50,10 @@ else
 	CMD="$CMD -device e1000,netdev=nd"
 	CMD="$CMD -drive if=pflash,format=raw,unit=0,readonly=on,file=/OVMF_CODE.2018.fd"
 	CMD="$CMD -drive if=pflash,format=raw,unit=1,file=/OVMF_VARS.$VARS.fd"
-	CMD="$CMD -monitor stdio"
+	CMD="$CMD -chardev stdio,id=w,signal=off,mux=on,logfile=serial_windows.log"
+	CMD="$CMD -serial chardev:w"
+	CMD="$CMD -mon chardev=w,mode=readline"
+	CMD="$CMD -device virtconsole,chardev=w"
 	CMD="$CMD -action panic=none"
 	CMD="$CMD -append console=ttyS0,38400 -serial file:serial_windows.out"
 fi

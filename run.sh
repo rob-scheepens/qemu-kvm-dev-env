@@ -32,9 +32,6 @@ grep -q dev_env_unit /proc/cmdline && UNIT=$(cat /proc/cmdline |  sed -n "s/.*de
 
 TRACE_CMD="--trace \"hyperv_*\" --trace \"kvm_*\""
 
-LOG_FILE="/var/log/qemu.log"  # Specify the log file
-LOG_ITEMS="cpu_reset,guest_errors"  # Specify the log items
-
 if [[ "$UNIT" ]]; then
 	CMD="$DBG ./kvm-unit-tests/$UNIT"
 else
@@ -54,9 +51,6 @@ else
 	CMD="$CMD -drive if=pflash,format=raw,unit=0,readonly=on,file=/OVMF_CODE.2018.fd"
 	CMD="$CMD -drive if=pflash,format=raw,unit=1,file=/OVMF_VARS.$VARS.fd"
 	CMD="$CMD -monitor stdio"
-	CMD="$CMD -serial tcp:10.57.76.100:$GUEST_CONSOLE_PORT,server,nowait"
-	CMD="$CMD -action panic=none"
-	CMD="$CMD -D $LOG_FILE -d $LOG_ITEMS"  # Add logging options
 	CMD="$CMD -serial tcp:10.57.76.100:$GUEST_CONSOLE_PORT,server,nowait"
 	CMD="$CMD -action panic=none"
 fi

@@ -37,6 +37,7 @@ set -x
 	-serial chardev:c \
 	-mon chardev=c,mode=readline \
 	-device virtconsole,chardev=c \
+	-serial telnet:127.0.0.1:4545,server,nowait \
 	-device qemu-xhci \
 	-append "console=hvc0 kvm_intel.dump_invalid_vmcs=1 nokaslr vfio_iommu_type1.allow_unsafe_interrupts=1 $1 $2" \
 	-virtfs local,path=$SHARE_DIR,mount_tag=host,security_model=none \

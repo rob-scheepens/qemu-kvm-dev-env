@@ -18,8 +18,7 @@ fi
 
 set -x
 
-/usr/bin/qemu-system-x86_64 \
-	-L /qemu/pc-bios/ \
+/usr/local/bin/qemu-system-x86_64 \
 	-smp 80 \
 	-kernel $KERNEL \
 	-initrd $INITRD_PATH \

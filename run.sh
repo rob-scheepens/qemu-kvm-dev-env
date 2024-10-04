@@ -51,7 +51,7 @@ else
 	CMD="$CMD -drive if=pflash,format=raw,unit=0,readonly=on,file=/OVMF_CODE.2018.fd"
 	CMD="$CMD -drive if=pflash,format=raw,unit=1,file=/OVMF_VARS.$VARS.fd"
 	CMD="$CMD -monitor stdio"
-	CMD="$CMD -serial tcp:10.57.76.100:$GUEST_CONSOLE_PORT,server,nowait"
+	CMD="$CMD -serial tcp::$GUEST_CONSOLE_PORT,server,nowait"
 	CMD="$CMD -action panic=none"
 fi
 

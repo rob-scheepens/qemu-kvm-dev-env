@@ -76,18 +76,10 @@ TMPDIR=$(mktemp -d)
         ln -s / usr/share/qemu
         ln -s / keymaps
         for file in bios.bin vgabios.bin bios-256k.bin vgabios-stdvga.bin kvmvapic.bin linuxboot_dma.bin efi-e1000.rom efi-vmxnet3.rom keymaps/en-us; do
-            file_found=false
             for dir in /usr/share/qemu /usr/share/seabios /usr/local/share/qemu /qemu/pc-bios; do
-                if [ -e $dir/$file ]; then
-                    cp $dir/$file .
-                    file_found=true
-                    break
-                fi
+                [ -e $dir/$file ] || continue
+                cp $dir/$file .
             done
-            if [ "$file" = "bios-256k.bin" ] && [ "$file_found" = false ]; then
-                echo "Error: Could not find $file in any of the specified directories."
-                exit 1
-            fi
         done
     fi
     cp $ROOTDIR/multiboot_dma.bin .

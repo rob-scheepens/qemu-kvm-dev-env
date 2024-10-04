@@ -35,7 +35,7 @@ TRACE_CMD="--trace \"hyperv_*\" --trace \"kvm_*\""
 if [[ "$UNIT" ]]; then
 	CMD="$DBG ./kvm-unit-tests/$UNIT"
 else
-	CMD="$DBG qemu-system-x86_64 $TRACE_CMD"
+	CMD="$DBG /root/qemu/build/qemu-system-x86_64 $TRACE_CMD"
 	CMD="$CMD -machine $MACHINE"
 	CMD="$CMD -smp $CPUS"
 	CMD="$CMD -cpu host,$HV"

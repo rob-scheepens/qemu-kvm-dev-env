@@ -29,8 +29,8 @@ set -x
 	-m 150G \
 	-drive file=$GUEST_IMAGE,if=none,id=nvme0,format=qcow2,snapshot=on \
 	-device nvme,drive=nvme0,serial=1234 \
-	-netdev tap,id=host,ifname=vm-nic,script=no,downscript=no \ # hostfwd=tcp::5900-:5900,hostfwd=tcp::$SSH_PORT-:$SSH_PORT,hostfwd=tcp::3389-:3389,hostfwd=tcp::$GUEST_CONSOLE_PORT-:$GUEST_CONSOLE_PORT,hostfwd=tcp::$HOST_TELNET_PORT-:$HOST_TELNET_PORT,hostfwd=tcp::$GDB_PORT-:$GDB_PORT \
-	-device e1000,netdev=vm-nic \
+	-netdev tap,id=host,ifname=vm-nic,script=no,downscript=no \
+	-device e1000,netdev=host \
 	-display none \
 	-device virtio-serial-pci \
 	-chardev stdio,id=c,signal=off,mux=on,logfile=serial_linux.log \
@@ -40,3 +40,5 @@ set -x
 	-device qemu-xhci \
 	-append "console=hvc0 kvm_intel.dump_invalid_vmcs=1 nokaslr vfio_iommu_type1.allow_unsafe_interrupts=1 $1 $2" \
 	-virtfs local,path=$SHARE_DIR,mount_tag=host,security_model=none \
+
+	# # hostfwd=tcp::5900-:5900,hostfwd=tcp::$SSH_PORT-:$SSH_PORT,hostfwd=tcp::3389-:3389,hostfwd=tcp::$GUEST_CONSOLE_PORT-:$GUEST_CONSOLE_PORT,hostfwd=tcp::$HOST_TELNET_PORT-:$HOST_TELNET_PORT,hostfwd=tcp::$GDB_PORT-:$GDB_PORT \

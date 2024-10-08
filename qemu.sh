@@ -40,5 +40,6 @@ set -x
 	-device qemu-xhci \
 	-append "console=hvc0 kvm_intel.dump_invalid_vmcs=1 nokaslr vfio_iommu_type1.allow_unsafe_interrupts=1 $1 $2" \
 	-virtfs local,path=$SHARE_DIR,mount_tag=host,security_model=none \
+	-vnc :1
 
 	# # hostfwd=tcp::5900-:5900,hostfwd=tcp::$SSH_PORT-:$SSH_PORT,hostfwd=tcp::3389-:3389,hostfwd=tcp::$GUEST_CONSOLE_PORT-:$GUEST_CONSOLE_PORT,hostfwd=tcp::$HOST_TELNET_PORT-:$HOST_TELNET_PORT,hostfwd=tcp::$GDB_PORT-:$GDB_PORT \

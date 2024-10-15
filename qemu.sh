@@ -29,7 +29,7 @@ set -x
 	-m 150G \
 	-drive file=$GUEST_IMAGE,if=none,id=nvme0,format=qcow2,snapshot=on \
 	-device nvme,drive=nvme0,serial=1234 \
-	-netdev tap,id=host,ifname=vm-nic,script=no,downscript=no \
+	-netdev user,id=host,hostfwd=tcp::5900-:5900,hostfwd=tcp::$SSH_PORT-:$SSH_PORT,hostfwd=tcp::3389-:3389,hostfwd=tcp::$GUEST_CONSOLE_PORT-:$GUEST_CONSOLE_PORT,hostfwd=tcp::$HOST_TELNET_PORT-:$HOST_TELNET_PORT,hostfwd=tcp::$GDB_PORT-:$GDB_PORT \
 	-device e1000,netdev=host \
 	-display none \
 	-device virtio-serial-pci \
@@ -42,5 +42,4 @@ set -x
 	-virtfs local,path=$SHARE_DIR,mount_tag=host,security_model=none \
 	-vnc :1
 	
-	#,hostfwd=tcp::5900-:5900,hostfwd=tcp::$SSH_PORT-:$SSH_PORT,hostfwd=tcp::3389-:3389,hostfwd=tcp::$GUEST_CONSOLE_PORT-:$GUEST_CONSOLE_PORT,hostfwd=tcp::$HOST_TELNET_PORT-:$HOST_TELNET_PORT,hostfwd=tcp::$GDB_PORT-:$GDB_PORT \
 

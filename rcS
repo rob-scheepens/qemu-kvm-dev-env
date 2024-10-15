@@ -14,6 +14,7 @@ ln -s /bin /usr/bin
 ln -s /proc/self/fd /dev/fd
 ip link set eth0 up
 ip addr add 192.168.222.2/24 dev eth0
+ip link set eth0 up
 ip route add 0.0.0.0/0 via 192.168.222.1
 mkdir /host
 mount -t 9p -o trans=virtio host /host -oversion=9p2000.L,msize=16777216

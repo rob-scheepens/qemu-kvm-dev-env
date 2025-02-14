@@ -20,5 +20,8 @@ export HOST_TELNET_PORT="1237"
 export GUEST_CONSOLE_PORT="1235"
 export GDB_PORT="1234"
 
+export KDNET_HOST_IP="10.57.76.22"
+export KDNET_HOST_PORT="55555"
+
 export CPUS="16"
 export MEM="64G"

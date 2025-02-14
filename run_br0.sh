@@ -51,7 +51,7 @@ else
 	CMD="$CMD -device qemu-xhci -device usb-tablet"
 	CMD="$CMD -device vmbus-bridge,irq=15"
 	CMD="$CMD -netdev bridge,br=br0,id=net0,helper=/bin/qemu-bridge-helper"
-	CMD="$CMD -device hv-syndbg,host_ip=10.57.76.22,host_port=55555,use_hcalls=false"
+	CMD="$CMD -device hv-syndbg,host_ip=$KDNET_HOST_IP,host_port=$KDNET_HOST_PORT,use_hcalls=false"
 	CMD="$CMD -device virtio-net-pci,netdev=net0,mac=52:54:00:12:34:57,romfile="
 	CMD="$CMD -drive if=pflash,format=raw,unit=0,readonly=on,file=./OVMF_CODE.2018.fd"
 	CMD="$CMD -drive if=pflash,format=raw,unit=1,file=./OVMF_VARS.$VARS.fd"

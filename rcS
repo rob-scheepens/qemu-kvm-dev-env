@@ -21,4 +21,4 @@ udhcpc -i br0 -s ./dhcp-client-script.sh
 mkdir /host
 mount -t 9p -o trans=virtio host /host -oversion=9p2000.L,msize=16777216
 telnetd -p $HOST_TELNET_PORT
-adduser tcpdump -p tcpdump
+useradd tcpdump -p tcpdump
